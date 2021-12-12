@@ -1,0 +1,31 @@
+inset py file into ".cmd" file
+
+
+
+".bat" "proj interpreter" "py script" file in start up
+
+hidden
+Win+R "regedit" yes - left enter 
+Ctrl+L "Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
+right+click new string value "filepath"
+
+C:\Documents and Settings\All Users\Start Menu\Programs\Startup
+run_script.cmd - python path\to\your\script.py
+
+python -c "import sys; print('\n'.join(sys.path))"
+
+nope
+import getpass, os
+USER_NAME = getpass.getuser()
+def add_to_startup(file_path=""):
+    if file_path == "":
+        file_path = os.path.dirname(os.path.realpath(__file__))
+    bat_path = r'C:\Users\%s\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup' % USER_NAME
+    with open(bat_path + '\\' + "open.bat", "w+") as bat_file:
+        bat_file.write(r'start "" %s' % file_path)
+
+py -m pip install pyinstaller
+cd MyFolder
+pyinstaller --onefile hello.py
+
+win++R "shell:common startup" paste shortcut
